@@ -11,7 +11,7 @@ class stack:
     def __pop__(self):
         if len(self) == 0:
             return Exception("Stack is empty. The pop operation cannot be perfromed.")
-        return self.__items.pop(0)
+        return self.__items.pop()
 
     def __peek__(self):
         if len(self) == 0:
