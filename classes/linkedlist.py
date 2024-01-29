@@ -34,6 +34,8 @@ class linkedlist:
             self.tail = newNode
 
     def __add_after_node__(self, data, value):
+        if self.head is None:
+            print("The linked list is empty")
         n = self.head
         while n is not None:
             if n.data == data:
@@ -41,19 +43,79 @@ class linkedlist:
             n = n.ref
         if n is None:
             print('Value not inside the list')
+        elif n.data == self.tail.data:
+            newNode = node(value)
+            self.tail.ref = newNode
+            self.tail = newNode
         else:
-            newNode = node(data)
+            newNode = node(value)
             newNode.ref = n.ref
             n.ref = newNode
+
+    def __insert_empty__(self, data):
+        if self.head is None:
+            newNode = node(data)
+            self.head = newNode
+            self.tail = newNode
+        else:
+            print('The linked list is not empty')
+
+    def __delete_first__(self):
+        if self.head is None:
+            print('The linked list is empty')
+        else:
+            self.head = self.head.ref
+
+    def __delete_last__(self):
+        if self.head is None:
+            print('The linked list is empty')
+        elif self.head.ref is None:
+            self.head = None
+            self.tail = None
+        else:
+            n = self.head
+            while n.ref.ref is not self.tail.ref:
+                n = n.ref
+            n.ref = None
+            self.tail = n
+
+    def __delete_by_value__(self, value):
+        if self.head is None:
+            print('The linked list is empty')
+            return
+
+        if self.head.data == value:
+            self.head = self.head.ref
+            return
+
+        if self.head.ref is None and self.head.data == value:
+            self.head = None
+            self.tail = None
+            return
+
+
+        n = self.head
+        while n.ref is not None:
+            if n.ref.data == value:
+                break
+            n = n.ref
+
+        if n.ref is None:
+            print("Node was not found")
+        else:
+            n.ref = n.ref.ref
 
 
 
 
 linkedList1 = linkedlist()
 linkedList1.__add_begin__(10)
-linkedList1.__add_begin__(12)
-linkedList1.__add_end__(13)
-linkedList1.__add_end__(15)
-linkedList1.__add_after_node__(16, 100)
+linkedList1.__add_begin__(20)
+linkedList1.__add_begin__(30)
 
 print(linkedList1.__print_linked_list__())
+
+linkedList1.__delete_by_value__(20)
+
+print(linkedList1.__print_linked_list__())
+
