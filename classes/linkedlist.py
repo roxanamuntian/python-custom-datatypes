@@ -1,4 +1,7 @@
-from node import node
+class node:
+    def __init__(self, data):
+        self.data = data
+        self.ref = None
 
 class linkedlist:
     def __init__(self):
@@ -104,18 +107,3 @@ class linkedlist:
             print("Node was not found")
         else:
             n.ref = n.ref.ref
-
-
-
-
-linkedList1 = linkedlist()
-linkedList1.__add_begin__(10)
-linkedList1.__add_begin__(20)
-linkedList1.__add_begin__(30)
-
-print(linkedList1.__print_linked_list__())
-
-linkedList1.__delete_by_value__(20)
-
-print(linkedList1.__print_linked_list__())
-
