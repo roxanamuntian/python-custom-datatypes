@@ -55,4 +55,46 @@ class doublylinkedlist:
             n.next = newNode
             newNode.prev = n
 
+    def __add_after_node__(self, data, node):
+        if self.head is None:
+            print ("The list is empty")
+        else:
+            n = self.head
+            while n is not None:
+                if n.data == node:
+                    break
+                n = n.next
+
+            if n is None:
+                print("Node not found in the list")
+            else:
+                newNode = node(data)
+                newNode.next = n.next
+                newNode.prev = n
+                n.next = newNode
+
+    def __add_before_node__(self, data, node):
+        if self.head is None:
+            print ("The list is empty")
+        else:
+            n = self.head
+            while n is not None:
+                if n.data == node:
+                    break
+                n = n.next
+
+            if n is None:
+                print("Node not found in the list")
+            else:
+                newNode = node(data)
+                newNode.next = n
+                newNode.prev = n.prev
+                if n.prev is not None:
+                    n.prev.next = newNode
+                else:
+                    self.head = newNode
+                n.prev = newNode
+
+
+
 
